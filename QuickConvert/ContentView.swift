@@ -12,15 +12,25 @@ struct ContentView: View {
         NavigationStack{
             Form{
                 Section("Select the conversion"){
-                    Picker("From", selection: $firstUnit){
-                        ForEach(units, id: \.self) { unit in
-                            Text(unit)
+                    ZStack{
+                        VStack(spacing: 36) {
+                            Picker("From", selection: $firstUnit){
+                                ForEach(units, id: \.self) { unit in
+                                    Text(unit)
+                                }
+                            }
+                            Picker("To", selection: $secondUnit){
+                                ForEach(units, id: \.self) { unit in
+                                    Text(unit)
+                                }
+                            }
                         }
-                    }
-                    Picker("To", selection: $secondUnit){
-                        ForEach(units, id: \.self) { unit in
-                            Text(unit)
-                        }
+                        Button {
+                            swapUnits()
+                        } label: {
+                            Image(systemName: "arrow.up.arrow.down")
+                        } .buttonStyle(.glassProminent)
+                            .frame(maxWidth: .infinity)
                     }
                 }
                 Section("Type the value to convert"){
@@ -29,11 +39,15 @@ struct ContentView: View {
                 
                 Section("Result"){
                     Text(result)
+                        .fontWeight(.bold)
                 }
                 
             }
             .navigationTitle("Quick Convert")
         }
+    }
+    func swapUnits() {
+        swap(&firstUnit, &secondUnit)
     }
 }
 
