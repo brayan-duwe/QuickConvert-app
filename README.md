@@ -2,7 +2,7 @@
 
 This is a very simple app that converts measurement units, such as Meters, Kilometers, Miles, Yards and Feet.
 
-## Main files of the project
+## Project files
 |Function| File |
 | -------|-------- |
 |View & UI | [ContentView.swift](/QuickConvert/ContentView.swift) |
